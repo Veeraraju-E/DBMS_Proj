@@ -1,18 +1,14 @@
----
-title: Question Answering System
-emoji: 🤖
-colorFrom: blue
-colorTo: red
-sdk: gradio
-sdk_version: 3.50.2
-app_file: app.py
-pinned: false
----
+# Question Answering System 🤖
 
-# Question Answering System
+This is a question answering system leveragin:
 
-This is a question answering system that uses:
-
-- Falcon-7B-Instruct for generating answers
+- GTP-2 for generating answers
 - Sentence transformers for embeddings
 - ChromaDB for vector storage
+- Built using Gradio SDK (3.50.2)
+
+The main goal is to illustrate through a simple the difference in answering capabilities of LLMs with and with the support of Vector Databases
+
+## Check out the Hugging Face app
+
+https://huggingface.co/spaces/Veeraraju/demo
