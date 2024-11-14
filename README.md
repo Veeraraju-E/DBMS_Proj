@@ -7,7 +7,7 @@ This is a question answering system leveragin:
 - ChromaDB for vector storage
 - Built using Gradio SDK (3.50.2)
 
-The main goal is to illustrate through a simple the difference in answering capabilities of LLMs with and with the support of Vector Databases
+The main goal is to illustrate through a simple example the difference in answering capabilities of LLMs with and without the support of Vector Databases
 
 ## Check out the Hugging Face app
 
