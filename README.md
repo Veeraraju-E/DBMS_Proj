@@ -1,14 +1,17 @@
-# Question Answering System 🤖
+# RAG Application Demo
 
-This is a question answering system leveragin:
+This application demonstrates the difference between LLM outputs:
 
-- GTP-2 for generating answers
-- Sentence transformers for embeddings
-- ChromaDB for vector storage
-- Built using Gradio SDK (3.50.2)
+- **Pure LLM Output**: Generated directly by the model.
+- **RAG Output**: Generated with context retrieved from a vector database.
 
-The main goal is to illustrate through a simple example the difference in answering capabilities of LLMs with and without the support of Vector Databases
+## How to Use
 
-## Check out the Hugging Face app
+1. Enter your question in the input box.
+2. Compare outputs from the pure LLM and the RAG system.
 
-https://huggingface.co/spaces/Veeraraju/demo
+## Powered by
+
+- Hugging Face Transformers
+- SentenceTransformers
+- FAISS
