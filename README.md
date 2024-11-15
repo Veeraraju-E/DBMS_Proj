@@ -1,5 +1,6 @@
 # 🤖 RAG Application Demo
 
+<img src=assets/image.png>
 This Gradio application demonstrates the difference between:
 
 - 🎯 **Pure LLM Output**: Generated directly from the model without additional context.
