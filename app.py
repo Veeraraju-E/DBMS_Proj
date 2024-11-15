@@ -1,4 +1,4 @@
-import streamlit as st
+import gradio as gr
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 from sentence_transformers import SentenceTransformer
 import faiss
@@ -19,37 +19,36 @@ documents = [
 doc_embeddings = vector_model.encode([doc["text"] for doc in documents])
 index.add(np.array(doc_embeddings))
 
-# Streamlit UI
-st.title("RAG Application Demo")
-st.write("Compare LLM outputs with and without context augmentation!")
+# Function to generate responses
+def generate_response(question):
+    # Pure LLM Response
+    inputs = llm_tokenizer(question, return_tensors="pt")
+    outputs = llm_model.generate(**inputs)
+    pure_llm_response = llm_tokenizer.decode(outputs[0], skip_special_tokens=True)
 
-query = st.text_input("Enter your question:")
+    # RAG Response
+    question_embedding = vector_model.encode([question])
+    _, top_k_indices = index.search(np.array(question_embedding), k=1)
+    retrieved_context = documents[top_k_indices[0][0]]["text"]
 
-if st.button("Generate"):
-    if query:
-        # Pure LLM Response
-        inputs = llm_tokenizer(query, return_tensors="pt")
-        outputs = llm_model.generate(**inputs)
-        pure_llm_response = llm_tokenizer.decode(outputs[0], skip_special_tokens=True)
+    context_enhanced_input = f"Question: {question} Context: {retrieved_context}"
+    inputs = llm_tokenizer(context_enhanced_input, return_tensors="pt")
+    outputs = llm_model.generate(**inputs)
+    rag_response = llm_tokenizer.decode(outputs[0], skip_special_tokens=True)
 
-        # RAG Response
-        question_embedding = vector_model.encode([query])
-        _, top_k_indices = index.search(np.array(question_embedding), k=1)
-        retrieved_context = documents[top_k_indices[0][0]]["text"]
+    return pure_llm_response, retrieved_context, rag_response
 
-        context_enhanced_input = f"Question: {query} Context: {retrieved_context}"
-        inputs = llm_tokenizer(context_enhanced_input, return_tensors="pt")
-        outputs = llm_model.generate(**inputs)
-        rag_response = llm_tokenizer.decode(outputs[0], skip_special_tokens=True)
+# Gradio interface
+iface = gr.Interface(
+    fn=generate_response,
+    inputs="text",
+    outputs=[
+        gr.Textbox(label="Pure LLM Output"),
+        gr.Textbox(label="Retrieved Context"),
+        gr.Textbox(label="RAG Output (with context)")
+    ],
+    title="RAG Application Demo",
+    description="This application demonstrates the difference between LLM outputs with and without context augmentation. Enter your question below!"
+)
 
-        # Display results
-        st.subheader("Pure LLM Output:")
-        st.write(pure_llm_response)
-
-        st.subheader("Retrieved Context:")
-        st.write(retrieved_context)
-
-        st.subheader("RAG Output (with context):")
-        st.write(rag_response)
-    else:
-        st.warning("Please enter a question!")
+iface.launch()
