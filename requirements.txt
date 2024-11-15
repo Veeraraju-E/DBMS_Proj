@@ -1,6 +1,6 @@
-chromadb
-sentence-transformers
-datasets
+gradio
+requests
+beautifulsoup4
 transformers
-torch
-accelerator
+sentence-transformers
+numpy
