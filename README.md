@@ -1,14 +1,17 @@
 # RAG Application Demo
 
-This application demonstrates the difference between LLM outputs:
+This Gradio application demonstrates the difference between:
 
-- **Pure LLM Output**: Generated directly by the model.
-- **RAG Output**: Generated with context retrieved from a vector database.
+- **Pure LLM Output**: Generated directly from the model without additional context.
+- **RAG Output**: Generated with relevant context retrieved from a vector database.
 
 ## How to Use
 
-1. Enter your question in the input box.
-2. Compare outputs from the pure LLM and the RAG system.
+1. Enter a question in the input box.
+2. The application will display:
+   - Pure LLM output.
+   - Retrieved context.
+   - RAG output with context enhancement.
 
 ## Powered by
 
