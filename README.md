@@ -1,9 +1,9 @@
-# RAG Application Demo
+# 🤖 RAG Application Demo
 
 This Gradio application demonstrates the difference between:
 
-- **Pure LLM Output**: Generated directly from the model without additional context.
-- **RAG Output**: Generated with relevant context retrieved from a vector database.
+- 🎯 **Pure LLM Output**: Generated directly from the model without additional context.
+- 🧠 **RAG Output**: Generated with relevant context retrieved from a vector database.
 
 ## How to Use
 
@@ -13,9 +13,11 @@ This Gradio application demonstrates the difference between:
    - Retrieved context (based on web-search)
    - RAG output with context enhancement.
 
-## Powered by
+## ⚙️ Powered by
 
-- Model + Tokenizer - Google's flan-t5-small
+- Model + Tokenizer - Google's flan-t5-small (super-fast)
 - Vector Store - Sentence Transformer
+
+## 🤗 Hugging Face
 
 https://huggingface.co/spaces/Veeraraju/demo
